@@ -15,7 +15,13 @@ def dict2url_ss(conf):
     :return: 
     """
     passwd_server = "@".join([conf['password'], conf['server']])
-    parts = ":".join([conf['method'], passwd_server, conf['server_port']])
+    if 'server_port' in conf:
+        server_port = conf['server_port']
+    elif 'port' in conf:
+        server_port = conf['port']
+    else:
+        raise Exception('port or server_port is need')
+    parts = ":".join([conf['method'], passwd_server, server_port])
     parts_encode = base64_encode(parts)
     res = "ss://" + parts_encode
     return res
@@ -54,7 +60,12 @@ def dict2url_ssr(conf):
     # part 3
     all_list = list()
     all_list.append(conf['server'])
-    all_list.append(conf['server_port'])
+    if 'server_port' in conf:
+        all_list.append(conf['server_port'])
+    elif 'port' in conf:
+        all_list.append(conf['port'])
+    else:
+        raise Exception('port or server_port is need')
     all_list.append(conf['protocol'])
     all_list.append(conf['method'])
     all_list.append(conf['obfs'])

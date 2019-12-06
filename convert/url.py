@@ -52,7 +52,7 @@ def url2dict_ss(url):
     conf['method'] = parts[0]
     conf['password'] = parts[1].split("@")[0]
     conf['server'] = parts[1].split("@")[1]
-    conf['server_port'] = parts[2]
+    conf['port'] = parts[2]
     return conf
 
 
@@ -74,7 +74,7 @@ def url2dict_ssr(url):
         print('不能解析SSR链接: %s' % url)
         return
     conf['server'] = parts[0]
-    conf['server_port'] = parts[1]
+    conf['port'] = parts[1]
     conf['protocol'] = parts[2]
     conf['method'] = parts[3]
     conf['obfs'] = parts[4]

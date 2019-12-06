@@ -49,6 +49,7 @@ def dict_type_default():
     '''
     protocol_param <- protoparam
     obfs_param <- obfsparam
+    server_port <- port
     :return: 
     '''
     conf = {
@@ -70,6 +71,7 @@ def dict_type_url():
     """
     protocol_param -> protoparam
     obfs_param -> obfsparam
+    server_port -> port
     :return: 
     """
     conf = {
@@ -78,28 +80,38 @@ def dict_type_url():
         "obfs": "",
         "obfsparam": "",
         "password": "",
+        "port": "",
         "protocol": "",
         "protoparam": "",
         "remarks": "",
         "server": "",
-        "server_port": "",
     }
     return conf
 
 
 def dict_type_default2url(conf):
     assert isinstance(conf, dict), "input is not dict."
+    # obfs_param
     conf['obfsparam'] = conf['obfs_param']
     conf.pop('obfs_param')
+    # protocol_param
     conf['protoparam'] = conf['protocol_param']
     conf.pop('protocol_param')
+    # server_port
+    conf['port'] = conf['server_port']
+    conf.pop('server_port')
     return conf
 
 
 def dict_type_url2default(conf):
     assert isinstance(conf, dict), "input is not dict."
+    # obfs_param
     conf['obfs_param'] = conf['obfsparam']
     conf.pop('obfsparam')
+    # protocol_param
     conf['protocol_param'] = conf['protoparam']
     conf.pop('protoparam')
+    # server_port
+    conf['server_port'] = conf['port']
+    conf.pop('port')
     return conf
