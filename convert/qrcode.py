@@ -3,7 +3,10 @@
 # @Time : 12/6/19 1:57 PM
 # @Author : xuezhi.zhang
 # @File : qrcode.py
-import cv2
+try:
+    import cv2
+except:
+    cv2 = None
 import os
 import zxing
 import numpy as np
