@@ -41,7 +41,17 @@ def get_ping_time(server="www.baidu.com", count=1, wait_time=2):
     cmd = "ping -c %s -w %s %s |grep 'time=' | awk '{print $%s}' |cut -b 6-" % (
         count, wait_time, server, ping_len)
     ping_res = os.popen(cmd).readlines()
-    ping_res = [int(float(item.strip())) for item in ping_res]
+    try:
+        cmd = "ping -c %s -w %s %s |grep 'time=' | awk '{print $%s}' |cut -b 6-" % (
+            count, wait_time, server, 8)
+        ping_res = os.popen(cmd).readlines()
+        ping_res = [int(float(item.strip())) for item in ping_res]
+    except:
+        cmd = "ping -c %s -w %s %s |grep 'time=' | awk '{print $%s}' |cut -b 6-" % (
+            count, wait_time, server, 7)
+        ping_res = os.popen(cmd).readlines()
+        ping_res = [int(float(item.strip())) for item in ping_res]
+        # return False, None
     if len(ping_res) == 0:
         ping_time = None
         status = False
