@@ -1,0 +1,3 @@
+[submodule "thirds/shadowsocksr"]
+	path = thirds/shadowsocksr
+	url = git@github.com:algoboy101/shadowsocksr.git
