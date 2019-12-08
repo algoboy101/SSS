@@ -18,11 +18,19 @@ def is_ip(server="127.0.0.1"):
         return False
 
 
-def domain2ip(server="www.baidu.com"):
-    ip = os.popen("ping -c 1 %s |grep 'time=' | awk '{print $4}' |cut -b 1-" %
-                  server).readline().strip()
-    # 被墙的域名，无法获取它的IP地址
-    if not ip:
+# def domain2ip(server="www.baidu.com"):
+#     ip = os.popen("ping -c 1 %s |grep 'time=' | awk '{print $4}' |cut -b 1-" %
+#                   server).readline().strip()
+#     # 被墙的域名，无法获取它的IP地址
+#     if not ip:
+#         ip = None
+#     return ip
+def domain2ip(server="www.baidu.com", port='http'):
+    import socket
+    try:
+        myaddr = socket.getaddrinfo(server, 'http')
+        ip = myaddr[0][4][0]
+    except:
         ip = None
     return ip
 
