@@ -1,3 +1,6 @@
 [submodule "thirds/shadowsocksr"]
 	path = thirds/shadowsocksr
 	url = git@github.com:algoboy101/shadowsocksr.git
+[submodule "thirds/electron-ssr"]
+	path = thirds/electron-ssr
+	url = git@github.com:algoboy101/electron-ssr.git
